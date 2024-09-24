@@ -25,6 +25,7 @@ void LEDS_seleccion();
 
 void setup() {
   // Configuración inicial
+  //Establecemos los pines como entradas o salidas
   pinMode(POT_1, INPUT);
   pinMode(LED_1, OUTPUT);
   pinMode(LED_2, OUTPUT);
@@ -35,17 +36,17 @@ void setup() {
 }
 
 void loop() {
-  Modulo_UART();  // Mostrar el menú
+  Modulo_UART();  // Mostrar el menú de selección
 
   if (opcion == '1') {  // Comparar con caracteres individuales
-    Lect_ADC();
+    Lect_ADC();//Llama la función de lectura del potenciómetro
     delay(100);
   }
   else if (opcion == '2') {
-    Seleccion_LEDS();
+    Seleccion_LEDS();//Manda a llamar la función para escoger la led que se enciende
   }
 }
-
+//Se establece el comportamiento de los leds en dependencia de la selección del usuario 
 void LEDS_seleccion(void) {
   Serial.print("Usted ha seleccionado la led:");
   Serial.print(seleccion);
@@ -77,7 +78,7 @@ void LEDS_seleccion(void) {
     Serial.println("Error: LED inválido");
   }
 }
-
+//Se establece la lectura serial y el menú de selección 
 void Modulo_UART(void) {
   // Mostrar el menú al usuario
   Serial.println("1. Lectura ADC");
